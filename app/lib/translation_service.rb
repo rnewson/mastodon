@@ -12,6 +12,8 @@ class TranslationService
       TranslationService::DeepL.new(ENV.fetch('DEEPL_PLAN', 'free'), ENV['DEEPL_API_KEY'])
     elsif ENV['LIBRE_TRANSLATE_ENDPOINT'].present?
       TranslationService::LibreTranslate.new(ENV['LIBRE_TRANSLATE_ENDPOINT'], ENV['LIBRE_TRANSLATE_API_KEY'])
+    elsif ENV['EASYNMT_ENDPOINT'].present?
+      TranslationService::EasyNMT.new(ENV['EASYNMT_ENDPOINT'], ENV['EASYNMT_FORCE_LANGUAGE_DETECTION')
     else
       raise NotConfiguredError
     end
